@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Home.css';
 
 const Home = () => {
+    const [programmes, setProgrammes] = useState([]);
+
+    useEffect( () => {
+        fetch('./fakeData.json')
+        .then(res => res.json())
+        .then(data => setProgrammes(data))
+    }, []);
     return (
         <div className='w-75 mx-auto'>
             {/* Heading. */}
-            <h2 className='text-uppercase mt-5'>I grow by helping people in need.</h2>
+            <h2 className='text-uppercase mt-4'>I grow by helping people in need.</h2>
 
             {/* Search Field */}
             <div className="container mt-3 d-flex justify-content-center">
@@ -20,12 +27,18 @@ const Home = () => {
             </div>
 
             {/* Volunteer Programmes */}
-            <div className="d-flex justify-content-between mt-5">
-                <div className="card border border-0" style={{ width: "15rem", height: "17rem" }}>
-                    <img src="https://i.postimg.cc/pT0Vpfnq/child-Support.png" className="card-img-top h-100" alt="..." />
-                    <div className="card-body px-0 py-0 border border-0">
-                        <button className='w-100 btn btn-warning mx-0'>Child Support</button>
-                    </div>
+            <div className="container mt-5">
+                <div className="row">
+                    {
+                        programmes.map(programme => <div className="col-md-3">
+                        <div className="card border border-0 mt-3">
+                            <img src={programme.image} className="card-img-top" alt="Img" />
+                                <div className="card-body px-0 py-0">
+                                    <a href="/" className="btn btn-primary btn-block py-2">{programme.name}</a>
+                                </div>
+                        </div>
+                    </div>)
+                    }
                 </div>
             </div>
         </div>
@@ -33,3 +46,16 @@ const Home = () => {
 };
 
 export default Home;
+
+// All Image Links
+
+
+// ---------
+//  Logos
+// --------
+
+/* https://i.postimg.cc/Zn59jNWQ/cloud-upload-outline-1.png
+https://i.postimg.cc/zXMLSV8d/Group-1329.png
+https://i.postimg.cc/qqDNF7nv/plus-1.png
+https://i.postimg.cc/dQ5Z35Xc/trash-2-9.png
+https://i.postimg.cc/Fs1dLj5d/users-alt-1.png */
