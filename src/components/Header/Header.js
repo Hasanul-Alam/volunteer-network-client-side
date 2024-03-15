@@ -5,7 +5,7 @@ import './Header.css';
 const Header = () => {
     return (
         <div>
-            <nav className="navbar navbar-expand-lg bg-body-tertiary">
+            <nav className="navbar navbar-expand-lg" style={{'background-color': '#e3f2fd'}}>
                 <div className="container-fluid w-75 mx-auto">
                     <Link className='navbar-brand' id='navbar-logo' to='/'><img className='w-100' src="https://i.postimg.cc/zXMLSV8d/Group-1329.png" alt="Logo" /></Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

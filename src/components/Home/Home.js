@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import './Home.css';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     const [programmes, setProgrammes] = useState([]);
 
-    useEffect( () => {
+    useEffect(() => {
         fetch('./fakeData.json')
-        .then(res => res.json())
-        .then(data => setProgrammes(data))
+            .then(res => res.json())
+            .then(data => setProgrammes(data))
     }, []);
     return (
         <div className='w-75 mx-auto'>
@@ -31,13 +32,13 @@ const Home = () => {
                 <div className="row">
                     {
                         programmes.map(programme => <div className="col-md-3">
-                        <div className="card border border-0 mt-3">
-                            <img src={programme.image} className="card-img-top" alt="Img" />
+                            <div className="card border border-0 mt-3">
+                                <img src={programme.image} className="card-img-top" alt="Img" />
                                 <div className="card-body px-0 py-0">
-                                    <a href="/" className="btn btn-primary btn-block py-2">{programme.name}</a>
+                                    <Link to="/register-volunteer" className="btn btn-primary btn-block py-2">{programme.name}</Link>
                                 </div>
-                        </div>
-                    </div>)
+                            </div>
+                        </div>)
                     }
                 </div>
             </div>

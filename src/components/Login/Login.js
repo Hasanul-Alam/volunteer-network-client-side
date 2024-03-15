@@ -9,7 +9,7 @@ const Login = () => {
                     <div className="col-md-6">
                         <div className="card">
                             <div className="card-header">
-                                Login
+                                <h4>Please Login</h4>
                             </div>
                             <div className="card-body">
                                 <form>
@@ -26,7 +26,7 @@ const Login = () => {
                                 </form>
                                 <button className="btn btn-primary">Sign In with Google</button>
                                 <br />
-                                <NavLink to='/register'><p className='text-primary mt-3'>Don't have an account?</p></NavLink>
+                                <p className=' mt-3'>Don't have an account? <NavLink to='/register'>Create an account</NavLink></p>
                             </div>
                         </div>
                     </div>
