@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Home.css';
 import { Link } from 'react-router-dom';
+import Programme from '../Programme/Programme';
 
 const Home = () => {
     const [programmes, setProgrammes] = useState([]);
@@ -31,14 +32,10 @@ const Home = () => {
             <div className="container mt-5">
                 <div className="row">
                     {
-                        programmes.map(programme => <div className="col-md-3">
-                            <div className="card border border-0 mt-3">
-                                <img src={programme.image} className="card-img-top" alt="Img" />
-                                <div className="card-body px-0 py-0">
-                                    <Link to="/register-volunteer" className="btn btn-primary btn-block py-2">{programme.name}</Link>
-                                </div>
-                            </div>
-                        </div>)
+                        programmes.map(programme => <Programme
+                            key={programme.id}
+                            programme={programme}
+                        ></Programme>)
                     }
                 </div>
             </div>

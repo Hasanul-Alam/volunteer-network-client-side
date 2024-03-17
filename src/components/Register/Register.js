@@ -29,9 +29,7 @@ const Register = () => {
                                         <input type="password" className="form-control" id="confirm_password" required />
                                     </div>
                                     <button type="submit" className="btn btn-primary btn-block">Register</button>
-                                    <p className='m-0 my-2'>or</p>
                                 </form>
-                                <button className="btn btn-primary">Sign Up with Google</button>
                             </div>
                         </div>
                     </div>

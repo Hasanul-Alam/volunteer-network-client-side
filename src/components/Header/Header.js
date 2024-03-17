@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
+import useFirebase from '../../hooks/useFirebase';
 
 const Header = () => {
+    const {user, logOut} = useFirebase();
     return (
         <div>
-            <nav className="navbar navbar-expand-lg" style={{'background-color': '#e3f2fd'}}>
+            <nav className="navbar navbar-expand-lg" style={{'backgroundColor': '#e3f2fd'}}>
                 <div className="container-fluid w-75 mx-auto">
                     <Link className='navbar-brand' id='navbar-logo' to='/'><img className='w-100' src="https://i.postimg.cc/zXMLSV8d/Group-1329.png" alt="Logo" /></Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,7 +28,7 @@ const Header = () => {
                                 <Link className="nav-link text-dark" to='/blog'>Blog</Link>
                             </li>
                             <li className="nav-item mx-1">
-                                <Link className=" nav-link text-dark" to='/login'>Login</Link>
+                                {user.email ? <Link onClick={logOut} className=" nav-link text-dark" to='/'>Logout</Link> : <Link className="nav-link text-dark" to='/login'>Login</Link>}
                             </li>
                             <li className="nav-item mx-1">
                                 <Link className="btn btn-dark nav-link text-light" to='/admin'>Admin</Link>

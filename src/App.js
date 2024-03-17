@@ -25,7 +25,7 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/admin' element={<Admin />} />
           <Route path='/login' element={<Login />} />
-          <Route path='/register-volunteer' element={<RegisterVolunteer />} />
+          <Route path='/register-volunteer/:id' element={<RegisterVolunteer />} />
           <Route path='/myVolunteer' element={<MyVolunteer />} />
         </Routes>
       </BrowserRouter>
