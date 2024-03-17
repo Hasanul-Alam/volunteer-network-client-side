@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import useFirebase from '../../hooks/useFirebase';
 
 const Login = () => {
-    const { googleSignIn } = useFirebase();
+    const { emailPasswordSignIn, handleEmailChange, handlePasswordChange, error } = useFirebase();
     return (
         <div>
             <div className="container mt-5">
@@ -17,18 +17,17 @@ const Login = () => {
                                 <form>
                                     <div className="form-group">
                                         <label htmlFor="email">Email address:</label>
-                                        <input type="email" className="form-control" id="email" required />
+                                        <input onChange={handleEmailChange} type="email" className="form-control" id="email" required />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="password">Password:</label>
-                                        <input type="password" className="form-control" id="password" required />
+                                        <input onChange={handlePasswordChange} type="password" className="form-control" id="password" required />
                                     </div>
-                                    <button type="submit" className="btn btn-primary btn-block">Submit</button>
-                                    <p className='m-0 my-2'>or</p>
                                 </form>
-                                <button onClick={googleSignIn} className="btn btn-primary">Sign In with Google</button>
+                                <button onClick={emailPasswordSignIn} className="btn btn-primary btn-block">Login</button>
                                 <br />
-                                <p className=' mt-3'>Don't have an account? <NavLink to='/register'>Create an account</NavLink></p>
+                                <p className=' '>Don't have an account? <NavLink to='/register'>Create an account</NavLink></p>
+                                {error === 'Firebase: Error (auth/invalid-credential).' ? <p className='text-danger'>Error: Invalid email or password.</p> : <p>{' '}</p> }
                             </div>
                         </div>
                     </div>

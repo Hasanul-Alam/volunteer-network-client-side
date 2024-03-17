@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import initializeAuthentication from "../Firebase/Firebase.init";
-import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 initializeAuthentication();
 
@@ -8,30 +8,92 @@ const useFirebase = () => {
 
     const [user, setUser] = useState({});
     const [error, setError] = useState();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
 
     // Google provider
     const provider = new GoogleAuthProvider();
     const auth = getAuth();
 
+    // Google Sign-In
     const googleSignIn = () => {
         signInWithPopup(auth, provider)
-        .then(result => {
-            setUser(result.user.email)
-            setError('')
-            window.location('/home')
-        })
-        .catch(error => setError(error.message))
+            .then(result => {
+                setUser(result.user.email)
+                setError('')
+                window.location('/home')
+            })
+            .catch(error => setError(error.message))
     }
 
+    // Email Password Sign-Up
+    const emailPasswordSignUp = () => {
+        if (email === '' || password === '') {
+            alert('Plese provide a valid email and a strong password.')
+        }
+        else if (password !== confirmPassword) {
+            setError('Please carefully put your passwords.');
+        }
+        else {
+            createUserWithEmailAndPassword(auth, email, password)
+                .then(result => {
+                    setUser(result.user)
+                    setError('');
+                    alert('Alhamdulillah your account is successfully created.');
+                    window.location = '/home'
+                })
+                .catch(error => setError(error.message))
+        }
+    }
+
+    // Email Password Sign-In
+    const emailPasswordSignIn = () => {
+        if (email === '' || password === '') {
+            alert('Please provide your email & password.');
+        }
+        else {
+            signInWithEmailAndPassword(auth, email, password)
+                .then(result => {
+                    setUser(result.user);
+                    setError('');
+                    window.location = '/home';
+                })
+                .catch(error => setError(error.message))
+        }
+    }
+
+    // Log-Out
     const logOut = () => {
         signOut(auth)
-        .then(() => {
-            alert('Alhamdulillah sign-out successfull.');
-            setUser({});
-        })
-        .catch(error => {
-            setError(error.message)
-        })
+            .then(() => {
+                alert('Alhamdulillah sign-out successfull.');
+                setUser({});
+            })
+            .catch(error => {
+                setError(error.message)
+            })
+    }
+
+    /* ---------------------
+        Handle Input Fields
+    -------------------------*/
+    // Handle Email Change
+    const handleEmailChange = (event) => {
+        const email = event.target.value;
+        setEmail(email);
+    }
+
+    // Handle Password Change
+    const handlePasswordChange = (event) => {
+        const password = event.target.value;
+        setPassword(password);
+    }
+
+    // Handle Confirm Password
+    const handleConfirmPassword = (event) => {
+        const confirmedPassword = event.target.value;
+        setConfirmPassword(confirmedPassword);
     }
 
     // On Auth State Changed
@@ -42,13 +104,18 @@ const useFirebase = () => {
             }
         })
     }, [])
-    
+
 
     return {
         user,
         error,
         googleSignIn,
-        logOut
+        logOut,
+        handleEmailChange,
+        handlePasswordChange,
+        handleConfirmPassword,
+        emailPasswordSignUp,
+        emailPasswordSignIn
     }
 };
 

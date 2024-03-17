@@ -1,6 +1,8 @@
 import React from 'react';
+import useFirebase from '../../hooks/useFirebase';
 
 const Register = () => {
+    const { handleEmailChange, handlePasswordChange, handleConfirmPassword, emailPasswordSignUp, googleSignIn ,error } = useFirebase();
     return (
         <div>
             <div className="container mt-5">
@@ -13,23 +15,22 @@ const Register = () => {
                             <div className="card-body">
                                 <form>
                                     <div className="form-group">
-                                        <label htmlFor="name">Name:</label>
-                                        <input type="text" className="form-control" id="name" required />
-                                    </div>
-                                    <div className="form-group">
                                         <label htmlFor="email">Email address:</label>
-                                        <input type="email" className="form-control" id="email" required />
+                                        <input onChange={handleEmailChange} type="email" className="form-control" id="email" required />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="password">Password:</label>
-                                        <input type="password" className="form-control" id="password" required />
+                                        <input onChange={handlePasswordChange} type="password" className="form-control" id="password" required />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="confirm_password">Confirm Password:</label>
-                                        <input type="password" className="form-control" id="confirm_password" required />
+                                        <input onChange={handleConfirmPassword} type="password" className="form-control" id="confirm_password" required />
                                     </div>
-                                    <button type="submit" className="btn btn-primary btn-block">Register</button>
                                 </form>
+                                <button onClick={emailPasswordSignUp} type="" className="btn btn-primary btn-block">Register</button>
+                                <p className='my-1'>or</p>
+                                <button onClick={googleSignIn} className="btn btn-primary">Sign In using Google</button>
+                                {error ? <p className='text-danger mt-3'>Error: {error}</p> : <p> </p>}
                             </div>
                         </div>
                     </div>
