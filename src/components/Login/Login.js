@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import useFirebase from '../../hooks/useFirebase';
 
 const Login = () => {
-    const {user, googleSignIn, error} = useFirebase();
+    const { googleSignIn } = useFirebase();
     return (
         <div>
             <div className="container mt-5">
