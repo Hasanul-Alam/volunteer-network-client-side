@@ -6,7 +6,7 @@ const Home = () => {
     const [programmes, setProgrammes] = useState([]);
 
     useEffect(() => {
-        fetch('./fakeData.json')
+        fetch('http://localhost:5000/volunteer-programmes')
             .then(res => res.json())
             .then(data => setProgrammes(data))
     }, []);
@@ -28,7 +28,7 @@ const Home = () => {
             </div>
 
             {/* Volunteer Programmes */}
-            <div className="container mt-5">
+            <div className="container mt-5 pb-4">
                 <div className="row">
                     {
                         programmes.map(programme => <Programme

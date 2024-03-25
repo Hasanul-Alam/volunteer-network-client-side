@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import useFirebase from '../../hooks/useFirebase';
 
 const Login = () => {
+    const [showPassword, setShowPassword] = useState();
     const { emailPasswordSignIn, handleEmailChange, handlePasswordChange, error } = useFirebase();
+
+    // Show Password
+    const handleShowPassword = () => {
+        setShowPassword(!showPassword)
+    }
     return (
         <div>
             <div className="container mt-5">
@@ -21,7 +27,13 @@ const Login = () => {
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="password">Password:</label>
-                                        <input onChange={handlePasswordChange} type="password" className="form-control" id="password" required />
+                                        <input onChange={handlePasswordChange} type={showPassword ? 'text' : 'password'} className="form-control" id="password" required />
+                                    </div>
+                                    <div className="input-group-append mb-3">
+                                        <div className="input-group-text">
+                                            <input onChange={handleShowPassword} type="checkbox" id="showPassword" />
+                                            <label htmlFor="showPassword" className="ml-2 mb-0">Show Password</label>
+                                        </div>
                                     </div>
                                 </form>
                                 <button onClick={emailPasswordSignIn} className="btn btn-primary btn-block">Login</button>
