@@ -13,6 +13,7 @@ const RegisterVolunteer = () => {
     const { user } = useFirebase();
     const navigate = useNavigate();
 
+    const {image, name} = programme;
 
     const { id } = useParams();
 
@@ -36,7 +37,7 @@ const RegisterVolunteer = () => {
     }
 
     const registerVolunter = (event) => {
-        const newUser = { email, programmeId, volunteerName, date };
+        const newUser = { email, programmeId, volunteerName, date, image, name };
         const url = `http://localhost:5000/registered-volunteers`;
         fetch(url, {
             method: 'POST',

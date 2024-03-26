@@ -22,7 +22,7 @@ const Header = () => {
                                 <Link className="nav-link text-dark" to='/donations'>Donation</Link>
                             </li>
                             <li className="nav-item mx-1">
-                                <Link className="nav-link text-dark" to='/events'>My-Events</Link>
+                                {user.email ? <Link className="nav-link text-dark" to='/events'>My-Events</Link> : ''}
                             </li>
                             <li className="nav-item mx-1">
                                 <Link className="nav-link text-dark" to='/blog'>Blog</Link>
