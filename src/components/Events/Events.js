@@ -34,9 +34,10 @@ const Events = () => {
     }
     return (
         <div className="container">
-            <h2 className='mb-3'>Your Events</h2>
-            <table className="table">
-                <thead>
+            <h2>Your Events</h2>
+            <div className="table-responsive">
+        <table className="table table-striped">
+        <thead>
                     <tr>
                         <th scope="col">Image</th>
                         <th scope="col">Programme Name</th>
@@ -44,7 +45,7 @@ const Events = () => {
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
-                <tbody>
+          <tbody>
                     {events.map(item => (
                         <tr key={item._id}>
                             <td><img src={item.image} alt="Profile" style={{ width: '50px' }} /></td>
@@ -54,7 +55,8 @@ const Events = () => {
                         </tr>
                     ))}
                 </tbody>
-            </table>
+        </table>
+      </div>
         </div>
     );
 };
