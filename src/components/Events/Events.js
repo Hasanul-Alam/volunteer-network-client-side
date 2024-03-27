@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useFirebase from '../../hooks/useFirebase';
+import axios from 'axios';
 
 const Events = () => {
     const [events, setEvents] = useState([]);
@@ -15,6 +16,22 @@ const Events = () => {
                 .then(data => setEvents(data))
         }
     }, [user])
+
+    const handleCancellation = (id, email) => {
+        const proceed = window.confirm('Are you sure to cancle?');
+        if (proceed) {
+            const url = `http://localhost:5000/events/${id}/${email}`;
+            axios.get(url)
+                .then(res => {
+                    if (res.data.deletedCount > 0) {
+                        alert('Alhamdulillah your event is cancelled successfully.');
+                    }
+                    // Show the rest events
+                    const remaining = events.filter(event => event._id !== id);
+                    setEvents(remaining);
+                })
+        }
+    }
     return (
         <div className="container">
             <h2 className='mb-3'>Your Events</h2>
@@ -29,11 +46,11 @@ const Events = () => {
                 </thead>
                 <tbody>
                     {events.map(item => (
-                        <tr key={item.id}>
+                        <tr key={item._id}>
                             <td><img src={item.image} alt="Profile" style={{ width: '50px' }} /></td>
                             <td>{item.name}</td>
                             <td>{item.date}</td>
-                            <td><button className='btn btn-danger'>Cancle</button></td>
+                            <td><button onClick={() => handleCancellation(item._id, item.email)} className='btn btn-danger'>Cancle</button></td>
                         </tr>
                     ))}
                 </tbody>
