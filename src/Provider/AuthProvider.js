@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
-import initializeAuthentication from "../Firebase/Firebase.init";
+import { createContext, useEffect, useState } from "react";
 import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import app from "../Firebase/Firebase.config";
 
-initializeAuthentication();
+export const AuthContext = createContext();
+const auth = getAuth(app);
 
-const useFirebase = () => {
+const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState({});
     const [error, setError] = useState();
@@ -101,18 +102,21 @@ const useFirebase = () => {
         setConfirmPassword(confirmedPassword);
     }
 
-    // On Auth State Changed
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
-            if (user) {
+            if(user){
                 setUser(user);
+                setLoading(false);
+                console.log(user)
+            }
+            else{
                 setLoading(false);
             }
         })
     }, [])
 
 
-    return {
+    const authInfo = {
         user,
         error,
         loading,
@@ -124,6 +128,12 @@ const useFirebase = () => {
         emailPasswordSignUp,
         emailPasswordSignIn
     }
+
+    return (
+        <AuthContext.Provider value={authInfo}>
+            {children}
+        </AuthContext.Provider>
+    )
 };
 
-export default useFirebase;
+export default AuthProvider;

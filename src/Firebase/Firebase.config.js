@@ -1,3 +1,5 @@
+import { initializeApp } from "firebase/app";
+
 const firebaseConfig = {
     apiKey: "AIzaSyCTEu7ab0-VhxbQq1A7oIzKNBhnWboICe8",
     authDomain: "volunteer-network-auth-5e609.firebaseapp.com",
@@ -8,4 +10,6 @@ const firebaseConfig = {
     measurementId: "G-2B0X5H8P98"
 };
 
-export default firebaseConfig;
+const app = initializeApp(firebaseConfig);
+
+export default app;

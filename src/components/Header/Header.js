@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
-import useFirebase from '../../hooks/useFirebase';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const Header = () => {
-    const { user, logOut } = useFirebase();
+    const { user, logOut } = useContext(AuthContext);
     return (
         <div>
             <nav className="navbar navbar-expand-lg" style={{ 'backgroundColor': '#e3f2fd' }}>

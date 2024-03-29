@@ -8,5 +8,6 @@
 @media screen and (max-width: 991px){
     #header-container{
         width: 100%;
+        text-align: center;
     }
 }

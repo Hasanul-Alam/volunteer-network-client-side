@@ -4,16 +4,21 @@ import Programme from '../Programme/Programme';
 
 const Home = () => {
     const [programmes, setProgrammes] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+        setLoading(true);
         fetch('http://localhost:5000/volunteer-programmes')
             .then(res => res.json())
-            .then(data => setProgrammes(data))
+            .then(data => {
+                setProgrammes(data);
+                setLoading(false);
+            })
     }, []);
     return (
         <div className='w-75 mx-auto'>
             {/* Heading. */}
-            <h2 className='text-uppercase mt-4'>I grow by helping people in need.</h2>
+            <h2 className='text-uppercase mt-4 text-center'>I grow by helping people in need.</h2>
 
             {/* Search Field */}
             <div className="container mt-3 d-flex justify-content-center">
@@ -29,13 +34,15 @@ const Home = () => {
 
             {/* Volunteer Programmes */}
             <div className="container mt-5 pb-4">
-                <div className="row">
-                    {
-                        programmes.map(programme => <Programme
-                            key={programme.id}
-                            programme={programme}
-                        ></Programme>)
-                    }
+                <div className="row d-flex justify-content-center">
+                    {loading ? <div class="text-primary">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden"></span>
+                        </div>
+                    </div> : programmes.map(programme => <Programme
+                        key={programme.id}
+                        programme={programme}
+                    ></Programme>)}
                 </div>
             </div>
         </div>
@@ -51,8 +58,7 @@ export default Home;
 //  Logos
 // --------
 
-/* https://i.postimg.cc/Zn59jNWQ/cloud-upload-outline-1.png
-https://i.postimg.cc/zXMLSV8d/Group-1329.png
-https://i.postimg.cc/qqDNF7nv/plus-1.png
-https://i.postimg.cc/dQ5Z35Xc/trash-2-9.png
-https://i.postimg.cc/Fs1dLj5d/users-alt-1.png */
+/* programmes.map(programme => <Programme
+                            key={programme.id}
+                            programme={programme}
+                        ></Programme>) */

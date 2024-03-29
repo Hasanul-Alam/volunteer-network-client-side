@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import useFirebase from '../../hooks/useFirebase';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState();
-    const { emailPasswordSignIn, handleEmailChange, handlePasswordChange, error } = useFirebase();
+    const { emailPasswordSignIn, handleEmailChange, handlePasswordChange, error } = useContext(AuthContext);
 
     // Show Password
     const handleShowPassword = () => {

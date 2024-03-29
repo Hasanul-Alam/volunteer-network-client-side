@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './Admin.css';
-import useFirebase from '../../hooks/useFirebase';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const Admin = () => {
     const [showPassword, setShowPassword] = useState(false);
-    const { user } = useFirebase();
+    const { user } = useContext(AuthContext);
 
     // Show Password
     const handleShowPassword = () => {

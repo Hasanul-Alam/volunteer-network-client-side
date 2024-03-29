@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
-import useFirebase from '../../hooks/useFirebase';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const Programme = (props) => {
     const { image, name, _id } = props.programme;
-    const {user} = useFirebase();
+    const {user} = useContext(AuthContext);
 
     return (
         <div className="col-md-3">

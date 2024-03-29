@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './RegisterVolunteer.css';
 import { useNavigate, useParams } from 'react-router-dom';
-import useFirebase from '../../hooks/useFirebase';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const RegisterVolunteer = () => {
 
@@ -10,7 +10,7 @@ const RegisterVolunteer = () => {
     const [date, setDate] = useState('');
     const [email, setEmail] = useState('');
     const [programmeId, setProgrammeId] = useState('');
-    const { user } = useFirebase();
+    const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const {image, name} = programme;

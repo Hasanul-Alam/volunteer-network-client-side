@@ -10,6 +10,7 @@
 @media screen and (max-width: 991px){
     #blog-container{
         grid-template-columns: repeat(1, 1fr);
+        text-align: center;
     }
     #blog-container img{
         height: auto;
