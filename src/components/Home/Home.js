@@ -8,7 +8,7 @@ const Home = () => {
 
     useEffect(() => {
         setLoading(true);
-        fetch('http://localhost:5000/volunteer-programmes')
+        fetch('https://volunteer-network-server-side.vercel.app/volunteer-programmes')
             .then(res => res.json())
             .then(data => {
                 setProgrammes(data);

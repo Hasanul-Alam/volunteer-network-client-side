@@ -18,7 +18,7 @@ const RegisterVolunteer = () => {
     const { id } = useParams();
 
     useEffect(() => {
-        const url = `http://localhost:5000/volunteer-programmes/${id}`;
+        const url = `https://volunteer-network-server-side.vercel.app/volunteer-programmes/${id}`;
         fetch(url)
             .then(res => res.json())
             .then(data => setProgramme(data))
@@ -38,7 +38,7 @@ const RegisterVolunteer = () => {
 
     const registerVolunter = (event) => {
         const newUser = { email, programmeId, volunteerName, date, image, name };
-        const url = `http://localhost:5000/registered-volunteers`;
+        const url = `https://volunteer-network-server-side.vercel.app/registered-volunteers`;
         fetch(url, {
             method: 'POST',
             headers: {

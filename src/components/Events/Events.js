@@ -9,32 +9,18 @@ const Events = () => {
 
 
     useEffect(() => {
-        const url = `http://localhost:5000/events?email=${user.email}`;
+        const url = `https://volunteer-network-server-side.vercel.app/events?email=${user.email}`;
         fetch(url)
             .then(res => res.json())
             .then(data => {
                 setEvents(data)
             })
-        /* if(loading){
-            return
-        }
-        else if (user.email) {
-            const url = `http://localhost:5000/events?email=${user.email}`;
-            fetch(url)
-                .then(res => res.json())
-                .then(data => {
-                    setEvents(data)
-                })
-        }
-        else if(!user.email){
-            navigate('/login');
-        } */
     }, [user])
 
     const handleCancellation = (id, email) => {
         const proceed = window.confirm('Are you sure to cancle?');
         if (proceed) {
-            const url = `http://localhost:5000/events/${id}/${email}`;
+            const url = `https://volunteer-network-server-side.vercel.app/events/${id}/${email}`;
             axios.delete(url)
                 .then(res => {
                     if (res.data.deletedCount > 0) {
