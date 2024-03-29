@@ -13,7 +13,7 @@ const Blog = () => {
         <div className='w-75 mx-auto'>
             <div className="container" id='blog-container'>
                 {
-                    blogs.map(blog => <div className="card mb-3" key={blog._id}>
+                    blogs.map(blog => <div className="card mb-3 text-center" key={blog._id}>
                         <img src={blog.image} className="card-img-top" alt="..."/>
                             <div className="card-body">
                                 <h5 className="card-title">{blog.name}</h5>

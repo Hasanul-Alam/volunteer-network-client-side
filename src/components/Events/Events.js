@@ -6,7 +6,6 @@ const Events = () => {
     const [events, setEvents] = useState([]);
 
     const { user, loading } = useContext(AuthContext);
-    console.log(!user.email);
 
 
     useEffect(() => {

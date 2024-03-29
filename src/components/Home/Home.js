@@ -35,9 +35,9 @@ const Home = () => {
             {/* Volunteer Programmes */}
             <div className="container mt-5 pb-4">
                 <div className="row d-flex justify-content-center">
-                    {loading ? <div class="text-primary">
-                        <div class="spinner-border" role="status">
-                            <span class="visually-hidden"></span>
+                    {loading ? <div className="text-primary">
+                        <div className="spinner-border" role="status">
+                            <span className="visually-hidden"></span>
                         </div>
                     </div> : programmes.map(programme => <Programme
                         key={programme.id}
