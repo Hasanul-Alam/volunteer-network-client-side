@@ -12,7 +12,7 @@ const Login = () => {
     }
     return (
         <div>
-            <div className="container mt-5">
+            <div className="container mt-5 text-center">
                 <div className="row justify-content-center">
                     <div className="col-md-6">
                         <div className="card">
